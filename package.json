@@ -8,7 +8,8 @@
         "vscode": "^1.16.0"
     },
     "categories": [
-        "Languages"
+        "Languages",
+        "Themes"
     ],
     "contributes": {
         "languages": [{
@@ -21,6 +22,11 @@
             "language": "nemerle",
             "scopeName": "source.nemerle",
             "path": "./syntaxes/nemerle.tmLanguage"
+        }],
+        "themes": [{
+            "label": "ForDebug",
+            "uiTheme": "vs-dark",
+            "path": "./themes/ForDebug-color-theme.json"
         }]
     }
 }
