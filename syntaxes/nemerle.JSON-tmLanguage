@@ -1,515 +1,178 @@
 {
-  "name": "Nemerle",
-  "scopeName": "source.nemerle",
+  "uuid": "6FE37C5B-55AC-4F1B-A0EC-C421B84D78C3",
   "fileTypes": [
     "n"
   ],
-  "uuid": "6FE37C5B-55AC-4F1B-A0EC-C421B84D78C3",
+  "name": "Nemerle",
+  "scopeName": "source.nemerle",
   "patterns": [
     {
-      "include": "#comment"
-    },
-    {
-      "include": "#directives"
-    },
-    {
-      "include": "#declarations"
-    }
-  ],
-  "repository": {
-    "directives": {
-      "patterns": [
-        {
-          "include": "#using-directive"
-        },
-        {
-          "include": "#punctuation-semicolon"
-        }
-      ]
-    },
-    "declarations": {
-      "patterns": [
-        {
-          "include": "#namespace-declaration"
-        },
-        {
-          "include": "#type-declarations"
-        },
-        {
-          "include": "#punctuation-semicolon"
-        }
-      ]
-    },
-    "type-declarations": {
-      "patterns": [
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#storage-modifier"
-        },
-        {
-          "include": "#class-declaration"
-        },
-        {
-          "include": "#punctuation-semicolon"
-        }
-      ]
-    },
-    "class-or-struct-members": {
-      "patterns": [
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#storage-modifier"
-        },
-        {
-          "include": "#field-declaration"
-        },
-        {
-          "include": "#punctuation-semicolon"
-        }
-      ]
-    },
-    "using-directive": {
-      "patterns": [
-        {
-          "begin": "\\b(using)\\s+(?=([_[:alpha:]][_[:alnum:]]*)\\s*=)",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.other.using.nemerle"
-            },
-            "2": {
-              "name": "entity.name.type.alias.nemerle"
-            }
-          },
-          "end": "(?=;)",
-          "patterns": [
-            {
-              "include": "#comment"
-            },
-            {
-              "include": "#type"
-            },
-            {
-              "include": "#operator-assignment"
-            }
-          ]
-        },
-        {
-          "begin": "\\b(using)\\s*",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.other.using.nemerle"
-            }
-          },
-          "end": "(?=;)",
-          "patterns": [
-            {
-              "name": "entity.name.type.namespace.nemerle",
-              "match": "[_[:alpha:]][_[:alnum:]]*"
-            },
-            {
-              "include": "#operator-assignment"
-            }
-          ]
-        }
-      ]
-    },
-    "namespace-declaration": {
-      "begin": "\\b(namespace)\\s+",
+      "begin": "(\\s+)?(?=//)",
       "beginCaptures": {
         "1": {
-          "name": "keyword.other.namespace.nemerle"
+          "name": "punctuation.whitespace.comment.leading.nemerle"
         }
       },
-      "end": "(?<=\\})",
+      "end": "(?!\\G)",
       "patterns": [
         {
-          "include": "#comment"
-        },
-        {
-          "name": "entity.name.type.namespace.nemerle",
-          "match": "[_[:alpha:]][_[:alnum:]]*"
-        },
-        {
-          "include": "#punctuation-accessor"
-        },
-        {
-          "begin": "\\{",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.curlybrace.open.nemerle"
-            }
-          },
-          "end": "\\}",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.curlybrace.close.nemerle"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#declarations"
-            },
-            {
-              "include": "#using-directive"
-            },
-            {
-              "include": "#punctuation-semicolon"
-            }
-          ]
-        }
-      ]
-    },
-    "storage-modifier": {
-      "name": "storage.modifier.nemerle",
-      "match": "(?<!\\.)\\b(new|public|protected|internal|private|abstract|virtual|override|sealed|static|partial|readonly|volatile|const|extern|async|unsafe)\\b"
-    },
-    "class-declaration": {
-      "begin": "(?=\\bclass\\b)",
-      "end": "(?<=\\})",
-      "patterns": [
-        {
-          "begin": "(?x)\n\\b(class)\\b\\s+\n([_[:alpha:]][_[:alnum:]]*)\\s*",
-          "beginCaptures": {
-            "1": {
-              "name": "keyword.other.class.nemerle"
-            },
-            "2": {
-              "name": "entity.name.type.class.nemerle"
-            }
-          },
-          "end": "(?=\\{)",
-          "patterns": [
-            {
-              "include": "#comment"
-            },
-            {
-              "include": "#type-parameter-list"
-            }
-          ]
-        },
-        {
-          "begin": "\\{",
-          "beginCaptures": {
-            "0": {
-              "name": "punctuation.curlybrace.open.nemerle"
-            }
-          },
-          "end": "\\}",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.curlybrace.close.nemerle"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#class-or-struct-members"
-            }
-          ]
-        },
-        {
-          "include": "#comment"
-        }
-      ]
-    },
-    "type-parameter-list": {
-      "begin": "\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.typeparameters.begin.nemerle"
-        }
-      },
-      "end": "\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.typeparameters.end.nemerle"
-        }
-      },
-      "patterns": [
-        {
-          "match": "\\b(in|out)\\b",
-          "captures": {
-            "1": {
-              "name": "storage.modifier.nemerle"
-            }
-          }
-        },
-        {
-          "match": "\\b([_[:alpha:]][_[:alnum:]]*)\\b",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.type-parameter.nemerle"
-            }
-          }
-        },
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#punctuation-comma"
-        }
-      ]
-    },
-    "field-declaration": {
-      "begin": "(?x)\n(?<type-name>\n  (?:\n    (?:\n      (?:(?<identifier>[_[:alpha:]][_[:alnum:]]*)\\s*\\:\\:\\s*)? # alias-qualification\n      (?<name-and-type-args> # identifier + type arguments (if any)\n        \\g<identifier>\\s*\n        (?<type-args>\\s*\\[(?:[^\\[\\]]|\\g<type-args>)+\\]\\s*)?\n      )\n      (?:\\s*\\.\\s*\\g<name-and-type-args>)* | # Are there any more names being dotted into?\n      (?<tuple>\\s*\\((?:[^\\(\\)]|\\g<tuple>)+\\))\n    )\n    (?:\\s*\\*\\s*)* # pointer suffix?\n    (?:\\s*\\?\\s*)? # nullable suffix?\n    (?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*)* # array suffix?\n  )\n)\\s+\n(\\g<identifier>)\\s* # first field name\n(?!=>|==)(?=,|;|=|$)",
-      "beginCaptures": {
-        "1": {
-          "patterns": [
-            {
-              "include": "#type"
-            }
-          ]
-        },
-        "6": {
-          "name": "entity.name.variable.field.nemerle"
-        }
-      },
-      "end": "(?=;)",
-      "patterns": [
-        {
-          "name": "entity.name.variable.field.nemerle",
-          "match": "[_[:alpha:]][_[:alnum:]]*"
-        },
-        {
-          "include": "#punctuation-comma"
-        },
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#class-or-struct-members"
-        }
-      ]
-    },
-    "type": {
-      "name": "meta.type.nemerle",
-      "patterns": [
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#ref-modifier"
-        },
-        {
-          "include": "#tuple-type"
-        },
-        {
-          "include": "#type-builtin"
-        },
-        {
-          "include": "#type-name"
-        },
-        {
-          "include": "#type-arguments"
-        },
-        {
-          "include": "#type-array-suffix"
-        },
-        {
-          "include": "#type-nullable-suffix"
-        }
-      ]
-    },
-    "ref-modifier": {
-      "name": "storage.modifier.nemerle",
-      "match": "ref"
-    },
-    "tuple-type": {
-      "begin": "\\(",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.parenthesis.open.nemerle"
-        }
-      },
-      "end": "\\)",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.parenthesis.close.nemerle"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tuple-element"
-        },
-        {
-          "include": "#punctuation-comma"
-        }
-      ]
-    },
-    "tuple-element": {
-      "match": "(?x)\n(?<type-name>\n  (?:\n    (?:\n      (?:(?<identifier>[_[:alpha:]][_[:alnum:]]*)\\s*\\:\\:\\s*)? # alias-qualification\n      (?<name-and-type-args> # identifier + type arguments (if any)\n        \\g<identifier>\\s*\n        (?<type-args>\\s*\\[(?:[^\\[\\]]|\\g<type-args>)+\\]\\s*)?\n      )\n      (?:\\s*\\.\\s*\\g<name-and-type-args>)* | # Are there any more names being dotted into?\n      (?<tuple>\\s*\\((?:[^\\(\\)]|\\g<tuple>)+\\))\n    )\n    (?:\\s*\\*\\s*)* # pointer suffix?\n    (?:\\s*\\?\\s*)? # nullable suffix?\n    (?:\\s*\\[(?:\\s*,\\s*)*\\]\\s*)* # array suffix?\n  )\n)\n(?:\\b(?<tuple-name>\\g<identifier>)\\b)?",
-      "captures": {
-        "1": {
-          "patterns": [
-            {
-              "include": "#type"
-            }
-          ]
-        },
-        "6": {
-          "name": "entity.name.variable.tuple-element.nemerle"
-        }
-      }
-    },
-    "type-builtin": {
-      "match": "\\b(bool|byte|char|decimal|double|float|int|long|object|sbyte|short|string|uint|ulong|ushort|void)\\b",
-      "captures": {
-        "1": {
-          "name": "keyword.type.nemerle"
-        }
-      }
-    },
-    "type-name": {
-      "patterns": [
-        {
-          "match": "([_[:alpha:]][_[:alnum:]]*)\\s*(\\:\\:)",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.alias.nemerle"
-            },
-            "2": {
-              "name": "punctuation.separator.coloncolon.nemerle"
-            }
-          }
-        },
-        {
-          "match": "([_[:alpha:]][_[:alnum:]]*)\\s*(\\.)",
-          "captures": {
-            "1": {
-              "name": "entity.name.type.nemerle"
-            },
-            "2": {
-              "name": "punctuation.accessor.nemerle"
-            }
-          }
-        },
-        {
-          "match": "(\\.)\\s*([_[:alpha:]][_[:alnum:]]*)",
-          "captures": {
-            "1": {
-              "name": "punctuation.accessor.nemerle"
-            },
-            "2": {
-              "name": "entity.name.type.nemerle"
-            }
-          }
-        },
-        {
-          "name": "entity.name.type.nemerle",
-          "match": "[_[:alpha:]][_[:alnum:]]*"
-        }
-      ]
-    },
-    "type-arguments": {
-      "begin": "\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.typeparameters.begin.nemerle"
-        }
-      },
-      "end": "\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.typeparameters.end.nemerle"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#comment"
-        },
-        {
-          "include": "#type"
-        },
-        {
-          "include": "#punctuation-comma"
-        }
-      ]
-    },
-    "type-array-suffix": {
-      "begin": "\\[",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.squarebracket.open.nemerle"
-        }
-      },
-      "end": "\\]",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.squarebracket.close.nemerle"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#punctuation-comma"
-        }
-      ]
-    },
-    "type-nullable-suffix": {
-      "match": "\\?",
-      "captures": {
-        "0": {
-          "name": "punctuation.separator.question-mark.nemerle"
-        }
-      }
-    },
-    "operator-assignment": {
-      "name": "keyword.operator.assignment.nemerle",
-      "match": "(?<!=|!)(=)(?!=)"
-    },
-    "punctuation-comma": {
-      "name": "punctuation.separator.comma.nemerle",
-      "match": ","
-    },
-    "punctuation-semicolon": {
-      "name": "punctuation.terminator.statement.nemerle",
-      "match": ";"
-    },
-    "punctuation-accessor": {
-      "name": "punctuation.accessor.nemerle",
-      "match": "\\."
-    },
-    "comment": {
-      "patterns": [
-        {
-          "name": "comment.block.nemerle",
-          "begin": "/\\*",
+          "begin": "//",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.comment.nemerle"
             }
           },
-          "end": "\\*/",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.definition.comment.nemerle"
-            }
-          }
-        },
+          "end": "\\n",
+          "name": "comment.line.double-slash.nemerle"
+        }
+      ]
+    },
+    {
+      "begin": "/\\*",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.nemerle"
+        }
+      },
+      "end": "\\*/",
+      "name": "comment.block.nemerle"
+    },
+    {
+      "match": "\\b(false|null|true)\\b",
+      "name": "constant.language.nemerle"
+    },
+    {
+      "match": "\\b(([0-9]+(\\.|\\_)?[0-9]*(b|bu|d|f|L|LU|m|u|ub|UL)?)|(0(b|o|x)[0-9]+))\\b",
+      "name": "constant.numeric.nemerle"
+    },
+    {
+      "match": "\\b(catch|else|finally|for|foreach|if|match|repeat|try|unless|when|while)\\b",
+      "name": "keyword.control.nemerle"
+    },
+    {
+      "match": "(\\+|\\-|\\*|\\/|\\%)\\=?|<-|=>|=",
+      "name": "keyword.operator.nemerle"
+    },
+    {
+      "match": "\\b(\\_|as|assert|base|checked|do|fun|get|ignore|implements|in|is|lock|namespace|out|params|ref|set|syntax|throw|typeof|unchecked|using|with)\\b",
+      "name": "keyword.other.nemerle"
+    },
+    {
+      "match": "\\b(array|bool|byte|char|class|decimal|double|enum|float|int|interface|list|long|macro|module|object|sbyte|short|string|struct|type|uint|ulong|ushort|variant|void)\\b",
+      "name": "storage.type.nemerle"
+    },
+    {
+      "match": "\\b(abstract|def|delegate|event|extern|internal|mutable|override|public|private|protected|sealed|static|volatile|virtual|new)\\b",
+      "name": "storage.modifier.nemerle"
+    },
+    {
+      "match": "\\bthis\\b",
+      "name": "variable.language.nemerle"
+    },
+    {
+      "begin": "@?\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.nemerle"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nemerle"
+        }
+      },
+      "name": "string.quoted.double.nemerle",
+      "patterns": [
         {
-          "begin": "(^\\s+)?(?=//)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.whitespace.comment.leading.nemerle"
-            }
-          },
-          "end": "(?=$)",
-          "patterns": [
-            {
-              "name": "comment.line.double-slash.nemerle",
-              "begin": "(?<!/)//(?!/)",
-              "beginCaptures": {
-                "0": {
-                  "name": "punctuation.definition.comment.nemerle"
-                }
-              },
-              "end": "(?=$)"
-            }
-          ]
+          "match": "\\\\(\\\\|'|\\\"|a|b|c[A-Z]+|e|f|n|r|u0+[0-9,A-Z]+|v)",
+          "name": "constant.character.escape.nemerle"
+        }
+      ]
+    },
+    {
+      "begin": "<#",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.nemerle"
+        }
+      },
+      "end": ">#",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nemerle"
+        }
+      },
+      "name": "string.quoted.double.nemerle",
+      "patterns": [
+        {
+          "match": "\\\\(\\\\|'|\\\"|a|b|c[A-Z]+|e|f|n|r|u0+[0-9,A-Z]+|v)",
+          "name": "constant.character.escape.nemerle"
+        }
+      ]
+    },
+    {
+      "begin": "\\$@?\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.nemerle"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nemerle"
+        }
+      },
+      "name": "string.interpolated.nemerle",
+      "patterns": [
+        {
+          "match": "\\$[a-z,A-Z]+[a-z,A-Z,0-9]*( |\\+|\\-|\\*|\\/|\\%)",
+          "name": "constant.character.escape"
+        }
+      ]
+    },
+    {
+      "begin": "\\$<#",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.nemerle"
+        }
+      },
+      "end": "#>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nemerle"
+        }
+      },
+      "name": "string.interpolated.nemerle",
+      "patterns": [
+        {
+          "match": "\\$[a-z,A-Z]+[a-z,A-Z,0-9]*( |\\+|\\-|\\*|\\/|\\%)",
+          "name": "constant.character.escape"
+        }
+      ]
+    },
+    {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.nemerle"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.nemerle"
+        }
+      },
+      "name": "string.quoted.single.nemerle",
+      "patterns": [
+        {
+          "match": "\\\\(\\\\|'|\\\"|a|b|c[A-Z]+|e|f|n|r|u0+[0-9,A-Z]+|v)",
+          "name": "constant.character.escape"
         }
       ]
     }
-  }
+  ]
 }
