@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{D4C19A9F-590F-41BD-90A6-68F8CE9B370B}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="SampleServer\App.cs">
+    <Files>
+      <File FileName="NemerleServer\NemerleEngine.cs" Line="62" Column="1" />
+      <File FileName="SampleServer\App.cs" Line="254" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.SampleServer PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

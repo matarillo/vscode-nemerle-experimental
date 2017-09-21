@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19661A2F-F501-43B3-9A56-E7E9B5A6555D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NemerleServer</RootNamespace>
+    <AssemblyName>NemerleServer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.Build.Framework">
+      <HintPath>..\packages\Microsoft.Build.Framework.14.3.0\lib\net45\Microsoft.Build.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build">
+      <HintPath>..\packages\Microsoft.Build.14.3.0\lib\net45\Microsoft.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Nemerle">
+      <HintPath>..\packages\Nemerle.Unofficial.1.2.543\lib\net40\Nemerle.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="Nemerle.Compiler">
+      <HintPath>..\packages\Nemerle.Compiler.Unofficial.1.2.543\lib\net40\Nemerle.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Nemerle.Macros">
+      <HintPath>..\packages\Nemerle.Macros.Unofficial.1.2.543\lib\net40\Nemerle.Macros.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Nemerle.Compiler.Utils">
+      <HintPath>..\lib\Nemerle.Compiler.Utils.Unofficial.1.2.543\Nemerle.Compiler.Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NemerleProject.cs" />
+    <Compile Include="CompletionProject.cs" />
+    <Compile Include="NemerleEngine.cs" />
+    <Compile Include="WpfHint.Parsing\ParseToken.cs" />
+    <Compile Include="WpfHint.Parsing\Range.cs" />
+    <Compile Include="WpfHint.Parsing\RangeList.cs" />
+    <Compile Include="WpfHint.Parsing\ElementToken.cs" />
+    <Compile Include="WpfHint.Parsing\HintParser.cs" />
+    <Compile Include="WpfHint.Parsing\ParamParser.cs" />
+    <Compile Include="WpfHint.Parsing\RootToken.cs" />
+    <Compile Include="WpfHint.Parsing\TextToken.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WpfHint.Parsing\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
