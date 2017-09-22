@@ -16,17 +16,25 @@
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "languages": [{
-      "id": "nemerle",
-      "aliases": ["Nemerle"],
-      "extensions": [".n"],
-      "configuration": "./languages/configurations/nemerle.json"
-    }],
-    "grammars": [{
-      "language": "nemerle",
-      "scopeName": "source.nemerle",
-      "path": "./languages/syntaxes/nemerle.tmLanguage"
-    }],
+    "languages": [
+      {
+        "id": "nemerle",
+        "aliases": [
+          "Nemerle"
+        ],
+        "extensions": [
+          ".n"
+        ],
+        "configuration": "./languages/configurations/nemerle.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nemerle",
+        "scopeName": "source.nemerle",
+        "path": "./languages/syntaxes/nemerle.tmLanguage"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "Example configuration",

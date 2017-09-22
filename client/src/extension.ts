@@ -5,6 +5,7 @@
 'use strict';
 
 import * as path from 'path';
+import * as os from 'os';
 
 import { workspace, Disposable, ExtensionContext } from 'vscode';
 import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, Executable, TransportKind } from 'vscode-languageclient';
@@ -17,11 +18,15 @@ export function activate(context: ExtensionContext) {
 	
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
-	let serverOptions: ServerOptions = {
-		run : { command: serverCommand, options: commandOptions },
-		debug: { command: serverCommand, options: commandOptions }
-	}
-	
+	let serverOptions: ServerOptions =
+		(os.platform() === 'win32') ? {
+			run : { command: serverCommand, options: commandOptions },
+			debug: { command: serverCommand, options: commandOptions }
+		} : {
+			run : { command: 'mono', args: [serverCommand], options: commandOptions },
+			debug: { command: 'mono', args: [serverCommand], options: commandOptions }
+		}
+
 	// Options to control the language client
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents
