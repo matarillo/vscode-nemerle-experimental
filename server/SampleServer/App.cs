@@ -22,8 +22,8 @@ namespace SampleServer
 
         private NemerleEngine _engine;
 
-        public App(Stream input, Stream output)
-            : base(input, output)
+        public App(Stream input, Stream output, Action<string> trace)
+            : base(input, output, trace)
         {
             _documents = new TextDocumentManager();
             _documents.Changed += Documents_Changed;

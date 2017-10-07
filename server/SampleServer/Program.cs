@@ -13,8 +13,14 @@ namespace SampleServer
     {
         static void Main(string[] args)
         {
+            var exeDirectory = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+            var logFile = Path.Combine(exeDirectory, "LogFile.txt");
+
             Console.OutputEncoding = Encoding.UTF8;
-            var app = new App(Console.OpenStandardInput(), Console.OpenStandardOutput());
+            var app = new App(Console.OpenStandardInput(), Console.OpenStandardOutput(), x =>
+            {
+                File.AppendAllText(logFile, x);
+            });
             Logger.Instance.Attach(app);
             try
             {

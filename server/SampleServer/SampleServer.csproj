@@ -36,9 +36,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="LanguageServer">
-      <HintPath>..\packages\LanguageServerProtocol.2.0.2\lib\netstandard1.3\LanguageServer.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Console">
@@ -58,6 +55,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="LanguageServer">
+      <HintPath>..\lib\LanguageServerProtocol.2.0.2\LanguageServer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
