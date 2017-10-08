@@ -36,8 +36,8 @@ namespace SampleServer
 
         protected override Result<InitializeResult, ResponseError<InitializeErrorData>> Initialize(InitializeParams @params)
         {
-            InitializeEngine();
             _workerSpaceRoot = @params.rootUri;
+            InitializeEngine();
             var result = new InitializeResult
             {
                 capabilities = new ServerCapabilities
