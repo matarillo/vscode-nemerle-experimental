@@ -1,11 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
 
 namespace NemerleServer
 {
     public class NemerleProject
     {
+        public static NemerleProject Load(XDocument nproj, IDictionary<string, string> props)
+        {
+            throw new NotImplementedException();
+        }
+
         public string ProjectFilePath { get; internal set; }
+
+        public string Configuration { get; internal set; }
+
+        public string Platform { get; internal set; }
 
         public ReadOnlyCollection<string> CompilationSymbols { get; internal set; }
 
